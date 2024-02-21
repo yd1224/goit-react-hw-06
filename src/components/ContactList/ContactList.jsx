@@ -2,6 +2,7 @@ import { Contact } from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { useSelector } from "react-redux";
 const getVisibleContacts = (contacts, inputValue) => {
+  console.log("filter", contacts);
   return contacts.filter((contact) => {
     const nameWords = contact.name.toLowerCase();
     const searchTermArray = inputValue.toLowerCase().split(" ");
@@ -18,9 +19,10 @@ const getVisibleContacts = (contacts, inputValue) => {
 };
 
 export const ContactList = ({ onDelete }) => {
-  const contacts = useSelector((state) => state.contacts.items);
-  console.log(contacts);
+  const contacts = useSelector((state) => state.contacts);
+  console.log("contacts", contacts);
   const inputValue = useSelector((state) => state.filters.name);
+  console.log(inputValue);
   const visibleContacts = getVisibleContacts(contacts, inputValue);
   return (
     <ul>

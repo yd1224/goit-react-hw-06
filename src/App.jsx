@@ -6,19 +6,9 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-
       <ContactForm />
       <SearchBox />
       <ContactList />
-      {/* <select name="payment"
-             value={paymentMethod} onChange={evt => {
-        setpaymentMethod(evt.target.value);
-      }}
-   >
-        <option value="apple">Apple</option>
-        <option value="visa">Visa</option>
-            <option value="cash">Cash</option>
-      </select> */}
     </div>
   );
 }

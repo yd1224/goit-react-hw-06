@@ -2,11 +2,8 @@ import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import { addContact } from "../../redux/actions";
+import { addContact } from "../../redux/contactsSlice";
 import { useDispatch } from "react-redux";
-// import IMask from "imask";
-// import { useEffect } from "react";
-// import {useState} from "react";
 export const ContactForm = () => {
   const contactSchema = Yup.object().shape({
     name: Yup.string()
@@ -24,14 +21,7 @@ export const ContactForm = () => {
   });
   const userId1 = useId();
   const userId2 = useId();
-  //   useEffect(() => {
-  //     const inputElement = document.getElementById(userId2);
-  //     if (inputElement) {
-  //       IMask(inputElement, {
-  //         mask: "000-00-00",
-  //       });
-  //     }
-  //   }, [userId2]);
+
   const dispatch = useDispatch();
 
   return (
