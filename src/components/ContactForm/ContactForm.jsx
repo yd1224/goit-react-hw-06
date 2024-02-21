@@ -2,10 +2,12 @@ import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
+import { addContact } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 // import IMask from "imask";
 // import { useEffect } from "react";
 // import {useState} from "react";
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = () => {
   const contactSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too Short!")
@@ -30,6 +32,7 @@ export const ContactForm = ({ onAdd }) => {
   //       });
   //     }
   //   }, [userId2]);
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -38,10 +41,7 @@ export const ContactForm = ({ onAdd }) => {
         number: "",
       }}
       onSubmit={(values, actions) => {
-        onAdd({
-          id: Date.now(),
-          ...values,
-        });
+        dispatch(addContact(values));
         actions.resetForm();
       }}
       validationSchema={contactSchema}

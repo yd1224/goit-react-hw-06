@@ -1,14 +1,14 @@
 import { useId } from "react";
 import css from "./SearchBox.module.css";
-// import {useState} from "react";
-export const SearchBox = ({ handleChange, inputValue }) => {
-  // const [inputValue, setInputValue] = useState("");
+import { useSelector, useDispatch } from "react-redux";
+import { setInputValue } from "../../redux/actions.js";
+export const SearchBox = () => {
   const userId = useId();
-  //     const handleChange = evt => {
-  // // console.log(evt.target.value);
-  //         setInputValue(evt.target.value);
+  const dispatch = useDispatch();
 
-  //     }
+  const filter = useSelector((state) => state.filters.name);
+  const handleFilterChange = (evt) => dispatch(setInputValue(evt.target.value));
+
   return (
     <div className={css.divStyle}>
       <label htmlFor={userId}>Find contacts by name</label>
@@ -16,9 +16,12 @@ export const SearchBox = ({ handleChange, inputValue }) => {
         className={css.input}
         type="text"
         name="userinput"
-        value={inputValue}
+        value={filter}
         id={userId}
-        onChange={handleChange}
+        onChange={(evt) => {
+          handleFilterChange(evt);
+          console.log(evt.target.value);
+        }}
       />
     </div>
   );
